@@ -1,0 +1,17 @@
+{
+  "name": "Gh0st St0re",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "live-server --port=3000 --entry-file=index.html",
+    "admin": "live-server --port=3001 --entry-file=admin.html",
+    "vendor": "live-server --port=3002 --entry-file=vendor.html",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "firebase": "^10.5.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

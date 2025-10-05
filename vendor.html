@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gh0st St0re Vendor</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+</head>
+<body class="dark-mode">
+    <div id="matrixBg"></div>
+
+    <div class="vendor-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="nav-brand">
+                <span>🏪</span>
+                <span>منصة البائعين</span>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-primary" onclick="window.location.href='index.html'">
+                    العودة للمتجر
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="vendor-main">
+            <div class="vendor-welcome">
+                <h1>مرحباً بك في منصة البائعين</h1>
+                <p>يمكنك إدارة منتجاتك ومتابعة وملفاتك من هنا</p>
+            </div>
+
+            <div class="vendor-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="vendorEarnings">$0</h3>
+                        <p>إجمالي أرباحك</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3 id="vendorOrders">0</h3>
+                        <p>الطلبات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🛍️</div>
+                    <div class="stat-info">
+                        <h3 id="vendorProducts">0</h3>
+                        <p>منتجاتك</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vendor-actions">
+                <button class="btn-primary large" onclick="vendorSystem.showAddProductForm()">إضافة منتج جديد</button>
+                <button class="btn-secondary large" onclick="vendorSystem.loadMyProducts()">إدارة المنتجات</button>
+                <button class="btn-secondary large" onclick="vendorSystem.viewReports()">مشاهدة التقارير</button>
+            </div>
+
+            <!-- منتجات البائع -->
+            <div class="vendor-products-section">
+                <h3>منتجاتك</h3>
+                <div id="vendorProductsList" class="products-grid">
+                    <!-- منتجات البائع سيتم تحميلها هنا -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- نموذج إضافة منتج -->
+    <div id="vendorProductModal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>إضافة منتج جديد</h3>
+                <button class="btn-icon" onclick="vendorSystem.hideAddProductForm()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="vendorProductForm" class="product-form">
+                    <div class="form-group">
+                        <input type="text" id="vendorProductName" placeholder="اسم المنتج" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="vendorProductDescription" placeholder="وصف المنتج" class="form-input" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="vendorProductPrice" placeholder="السعر ($)" class="form-input" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="vendorProductCategory" class="form-input" required>
+                            <option value="">اختر الفئة</option>
+                            <option value="android">ANDROID</option>
+                            <option value="ios">IOS</option>
+                            <option value="pc">PC</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="vendorProductImage" placeholder="رمز الصورة (مثال: 🤖)" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="vendorProductStock" placeholder="الكمية المتاحة" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="vendorProductFeatures" placeholder="المميزات (مفصولة بفاصلة)" class="form-input">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="vendorSystem.hideAddProductForm()">إلغاء</button>
+                <button class="btn-primary" onclick="vendorSystem.addProduct()">إضافة المنتج</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-manager.js"></script>
+    <script src="js/vendor-system.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.vendorSystem = new VendorSystem();
+        });
+    </script>
+</body>
+</html>

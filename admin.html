@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gh0st St0re Admin</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+</head>
+<body class="dark-mode">
+    <div id="matrixBg"></div>
+
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="nav-brand">
+                <span>⚡</span>
+                <span>لوحة التحكم</span>
+            </div>
+            <div class="nav-actions">
+                <button id="themeToggle" class="btn-icon">🌙</button>
+                <button class="btn-primary" onclick="window.location.href='index.html'">
+                    العودة للمتجر
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="totalSales">$0</h3>
+                        <p>إجمالي المبيعات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3 id="totalOrders">0</h3>
+                        <p>الطلبات</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 id="totalUsers">0</h3>
+                        <p>العملاء</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🛍️</div>
+                    <div class="stat-info">
+                        <h3 id="totalProducts">0</h3>
+                        <p>المنتجات</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-sections">
+                <!-- إضافة منتج جديد -->
+                <section class="admin-section">
+                    <h3>إضافة منتج جديد</h3>
+                    <form id="addProductForm" class="product-form">
+                        <div class="form-group">
+                            <input type="text" id="productName" placeholder="اسم المنتج" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="productDescription" placeholder="وصف المنتج" class="form-input" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="productPrice" placeholder="السعر ($)" class="form-input" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="productCategory" class="form-input" required>
+                                <option value="">اختر الفئة</option>
+                                <option value="android">ANDROID</option>
+                                <option value="ios">IOS</option>
+                                <option value="pc">PC</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="productImage" placeholder="رمز الصورة (مثال: 🤖)" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="productStock" placeholder="الكمية المتاحة" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="productFeatures" placeholder="المميزات (مفصولة بفاصلة)" class="form-input">
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;">إضافة المنتج</button>
+                    </form>
+                </section>
+
+                <!-- إدارة المنتجات -->
+                <section class="admin-section">
+                    <h3>إدارة المنتجات</h3>
+                    <div class="section-actions">
+                        <button class="btn-primary" onclick="adminSystem.loadProducts()">تحديث القائمة</button>
+                    </div>
+                    <div id="productsList" class="products-list">
+                        <!-- المنتجات سيتم تحميلها هنا -->
+                    </div>
+                </section>
+
+                <!-- الطلبات الحديثة -->
+                <section class="admin-section">
+                    <h3>الطلبات الحديثة</h3>
+                    <div id="ordersList" class="orders-list">
+                        <!-- الطلبات سيتم تحميلها هنا -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-manager.js"></script>
+    <script src="js/admin-system.js"></script>
+    <script>
+        // Initialize admin system
+        document.addEventListener('DOMContentLoaded', function() {
+            window.adminSystem = new AdminSystem();
+        });
+    </script>
+</body>
+</html>

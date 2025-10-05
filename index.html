@@ -1,291 +1,134 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كورساتك بريميوم</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Tajawal', sans-serif;
-    }
-
-    body {
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      color: white;
-    }
-
-    /* شاشة الذرة */
-    .atom-screen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 1s ease;
-      z-index: 10;
-    }
-
-    .atom {
-      position: relative;
-      width: 250px;
-      height: 250px;
-    }
-
-    .nucleus {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 40px;
-      height: 40px;
-      margin: -20px 0 0 -20px;
-      background: radial-gradient(circle, #aaf, #66f);
-      border-radius: 50%;
-      box-shadow: 0 0 25px #88f, 0 0 50px #44f;
-    }
-
-    .orbit {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid rgba(200, 200, 255, 0.3);
-      border-radius: 50%;
-      transform-origin: center center;
-      animation: spin 6s linear infinite;
-    }
-
-    .orbit:nth-child(2) {
-      width: 180px;
-      height: 80px;
-      margin: -40px 0 0 -90px;
-      transform: rotate(0deg);
-      animation-duration: 6s;
-    }
-
-    .orbit:nth-child(3) {
-      width: 180px;
-      height: 80px;
-      margin: -40px 0 0 -90px;
-      transform: rotate(60deg);
-      animation-duration: 8s;
-    }
-
-    .orbit:nth-child(4) {
-      width: 180px;
-      height: 80px;
-      margin: -40px 0 0 -90px;
-      transform: rotate(-60deg);
-      animation-duration: 10s;
-    }
-
-    .electron {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      margin: -10px 0 0 70px;
-      background: #8ff;
-      border-radius: 50%;
-      box-shadow: 0 0 20px #6ff, 0 0 40px #3ff;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; visibility: hidden; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* شاشة الترحيب */
-    .welcome-screen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #5a3fc0, #2a1d69);
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      padding: 20px;
-      animation: fadeIn 1s ease;
-    }
-
-    .welcome-screen h1 {
-      font-size: 42px;
-      color: #ff813f;
-      margin-bottom: 10px;
-    }
-
-    .welcome-screen h2 {
-      font-size: 36px;
-      color: #ff813f;
-      margin-bottom: 20px;
-    }
-
-    .welcome-screen p {
-      font-size: 18px;
-      max-width: 320px;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      background: #345cff;
-      color: white;
-      border: none;
-      padding: 15px 40px;
-      font-size: 18px;
-      border-radius: 12px;
-      cursor: pointer;
-      margin-bottom: 50px;
-    }
-
-    .telegram {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-    }
-
-    .telegram img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-
-    /* شاشة التحذير */
-    .warning-screen {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      color: white;
-      padding: 20px;
-      animation: fadeIn 1s ease;
-    }
-
-    .warning-icon {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background-color: rgba(255, 0, 0, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 80px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 30px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
-    }
-
-    .warning-text {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .warning-subtext {
-      font-size: 16px;
-      max-width: 400px;
-      line-height: 1.6;
-    }
-
-    .english-text {
-      margin-top: 10px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gh0st St0re</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
 </head>
-<body>
-  <!-- شاشة الذرة -->
-  <div class="atom-screen" id="atomScreen">
-    <div class="atom">
-      <div class="nucleus"></div>
-      <div class="orbit"><div class="electron"></div></div>
-      <div class="orbit"><div class="electron"></div></div>
-      <div class="orbit"><div class="electron"></div></div>
+<body class="dark-mode">
+    <!-- Santa Background -->
+    <div class="santa-background"></div>
+    <div class="santa-glitch"></div>
+    
+    <!-- Matrix Background -->
+    <div id="matrixBg"></div>
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loader">
+            <div class="cyber-text">Gh0st St0re</div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- شاشة الترحيب -->
-  <div class="welcome-screen" id="welcomeScreen">
-    <h1>كورساتك</h1>
-    <h2>بريميوم</h2>
-    <p>"التعليم هو جواز السفر إلى المستقبل، فالغد ملك لأولئك الذين يعدون له اليوم."</p>
-    <button class="btn" id="startBtn">يلا بينا</button>
-    <div class="telegram">
-      <a href="https://t.me/santadevx" target="_blank" style="text-decoration: none; color: white; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-        <span>عاوز تشترك؟ كلمنا هنا</span>
-      </a>
+    <!-- Login Screen -->
+    <div id="loginScreen">
+        <div class="login-container">
+            <div class="logo">
+    <img src="GH0ST.png" alt="Gh0st Store" class="main-logo">
+</div>
+            <h1>Gh0st St0re</h1>
+            <p>Gh0st St0re</p>
+            <button id="googleLogin" class="btn-primary">تسجيل الدخول بـ Google</button>
+            <button id="guestLogin" class="btn-secondary">الدخول كزائر</button>
+        </div>
     </div>
-  </div> <!-- ✅ إغلاق شاشة الترحيب هنا -->
 
-  <!-- شاشة التحذير -->
-  <div class="warning-screen" id="warningScreen">
-    <div class="warning-icon">!</div>
-    <div class="warning-text">هنالك ضغط شديد على السيرفر</div>
-    <div class="warning-subtext">
-      يرجى الانتظار وعدم قفل التطبيق لمدة 5-10 دقائق
-      <div class="english-text">There is heavy pressure on the server. Please wait and do not close the application for 5-10 minutes.</div>
+    <!-- Main App -->
+    <div id="mainApp" class="hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="nav-brand">
+    <img src="GH0ST.png" alt="Gh0st Store" class="logo-image">
+    <span>GH0ST STORE</span>
+</div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" data-category="all">ALL</a>
+                <a href="#" class="nav-link" data-category="android">ANDROID</a>
+                <a href="#" class="nav-link" data-category="ios">IOS</a>
+                <a href="#" class="nav-link" data-category="pc">PC</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="themeToggle" class="btn-icon">🌙</button>
+                <button id="cartBtn" class="btn-icon">🛒<span id="cartCount">0</span></button>
+                <div class="user-menu">
+                    <span id="userName">زائر</span>
+                    <button id="logoutBtn" class="btn-small">تسجيل خروج</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>ملفات فري</h1>
+                <p>سكريبتات، وبانلات</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+                    <button class="btn-primary">بحث</button>
+                </div>
+            </section>
+
+            <!-- Products Grid -->
+            <section class="products-section">
+                <h2>المنتجات</h2>
+                <div id="productsGrid" class="products-grid">
+                    <!-- Products will load here -->
+                </div>
+            </section>
+
+            <!-- AI Chat Widget -->
+            <div id="aiChatWidget" class="ai-chat-widget">
+                <button id="chatToggle" class="chat-btn">🤖</button>
+                <div id="chatWindow" class="chat-window hidden">
+                    <div class="chat-header">
+                        <h4>Gh0stSANTA AI</h4>
+                        <button id="closeChat" class="btn-icon">×</button>
+                    </div>
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="اكتب سؤالك...">
+                        <button id="sendMessage" class="btn-primary">إرسال</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Shopping Cart -->
+        <div id="cartSidebar" class="cart-sidebar hidden">
+            <div class="cart-header">
+                <h3>سلة التسوق</h3>
+                <button id="closeCart" class="btn-icon">×</button>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">المجموع: $<span id="cartTotal">0</span></div>
+                <button id="checkoutBtn" class="btn-primary">إتمام الشراء</button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    window.onload = function() {
-      // إخفاء الذرة بعد 4 ثواني
-      setTimeout(() => {
-        const atomScreen = document.getElementById("atomScreen");
-        atomScreen.style.animation = "fadeOut 1s forwards";
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js"></script>
 
-        setTimeout(() => {
-          atomScreen.style.display = "none";
-          document.getElementById("welcomeScreen").style.display = "flex";
-        }, 1000);
-      }, 4000);
-
-      // عند الضغط على زر يلا بينا
-      document.getElementById("startBtn").addEventListener("click", function() {
-        setTimeout(() => {
-          document.getElementById("welcomeScreen").style.display = "none";
-          document.getElementById("warningScreen").style.display = "flex";
-        }, 3000);
-      });
-    };
-  </script>
+    <!-- Our Firebase Files -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-manager.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/ai-chat.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
