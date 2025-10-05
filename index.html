@@ -27,27 +27,14 @@
         </div>
     </div>
 
-    <!-- Login Screen -->
-    <div id="loginScreen">
-        <div class="login-container">
-            <div class="logo">
-    <img src="GH0ST.png" alt="Gh0st Store" class="main-logo">
-</div>
-            <h1>Gh0st St0re</h1>
-            <p>Gh0st St0re</p>
-            <button id="googleLogin" class="btn-primary">تسجيل الدخول بـ Google</button>
-            <button id="guestLogin" class="btn-secondary">الدخول كزائر</button>
-        </div>
-    </div>
-
-    <!-- Main App -->
-    <div id="mainApp" class="hidden">
+    <!-- Main App - يظهر مباشرة -->
+    <div id="mainApp">
         <!-- Header -->
         <header class="header">
             <div class="nav-brand">
-    <img src="GH0ST.png" alt="Gh0st Store" class="logo-image">
-    <span>GH0ST STORE</span>
-</div>
+                <img src="GH0ST.png" alt="Gh0st Store" class="logo-image">
+                <span>GH0ST STORE</span>
+            </div>
             <nav class="nav">
                 <a href="#" class="nav-link active" data-category="all">ALL</a>
                 <a href="#" class="nav-link" data-category="android">ANDROID</a>
@@ -57,9 +44,17 @@
             <div class="nav-actions">
                 <button id="themeToggle" class="btn-icon">🌙</button>
                 <button id="cartBtn" class="btn-icon">🛒<span id="cartCount">0</span></button>
-                <div class="user-menu">
-                    <span id="userName">زائر</span>
-                    <button id="logoutBtn" class="btn-small">تسجيل خروج</button>
+                
+                <!-- زر تسجيل الدخول في أقصى اليمين -->
+                <div id="authSection" class="auth-section">
+                    <div id="userMenu" class="user-menu hidden">
+                        <span id="userName">زائر</span>
+                        <button id="logoutBtn" class="btn-small">تسجيل خروج</button>
+                    </div>
+                    <div id="loginButtons" class="login-buttons">
+                        <button id="googleLoginBtn" class="btn-primary">تسجيل الدخول</button>
+                        <button id="guestLoginBtn" class="btn-secondary">زائر</button>
+                    </div>
                 </div>
             </div>
         </header>
